@@ -3,9 +3,13 @@ package com.crakama.refugee.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.crakama.refugee.R;
+import com.crakama.refugee.adapters.HomeScreenAdapter;
+import com.crakama.refugee.models.MainModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +17,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     RecyclerView rv_mainscreen;
     LinearLayoutManager nwlinearLayoutManager;
-    GeneralNavAdapter generalNavAdapter;
+    HomeScreenAdapter homeScreenAdapter;
     private List<MainModel> mainModelList = new ArrayList<>();
 
     public static final String TOWNS = "MainModel";
@@ -28,26 +32,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void homeNavigation() {
         nwlinearLayoutManager = new LinearLayoutManager(this);
-        generalNavAdapter = new GeneralNavAdapter(mainModelList);
+        homeScreenAdapter = new HomeScreenAdapter(mainModelList);
         rv_mainscreen =(RecyclerView) findViewById(R.id.rv_reportOptions);
         rv_mainscreen.setLayoutManager(nwlinearLayoutManager);
-        rv_mainscreen.setAdapter(generalNavAdapter);
+        rv_mainscreen.setAdapter(homeScreenAdapter);
         rv_mainscreen.addOnItemTouchListener(new ReportItemClickListener(getApplicationContext(),
                 new ReportItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int i) {
                         switch (i) {
                             case 0:
-                                openUpdateGeneralHealth();
+                                openUpdateNews();
                                 break;
                             case 1:
                                 // Toast.makeText(view.getContext(), "POSITION" + i, Toast.LENGTH_LONG).show();
-                                openUpdateHygieneTips();
+                                openUpdateHelpDesk();
 
                                 break;
                             case 2:
                                 // Toast.makeText(view.getContext(), "POSITION" + i, Toast.LENGTH_LONG).show();
-                                openUpdateMotherCare();
+                                openUpdateNoticeBoard();
+                                break;
+                            case 3:
+                                // Toast.makeText(view.getContext(), "POSITION" + i, Toast.LENGTH_LONG).show();
+                                openUpdateTownInfo();
                                 break;
                         }
                     }
@@ -57,28 +65,31 @@ public class MainActivity extends AppCompatActivity {
 
     private void openUpdateGeneralHealth() {
         //u
-        Intent reportIntent = new Intent( MainActivity.this, UpdateGeneralHealth.class);
+        Intent reportIntent = new Intent( MainActivity.this, UpdateNews.class);
         startActivity(reportIntent);
     }
 
     private void openUpdateHygieneTips() {
-        Intent reportIntent = new Intent(MainActivity.this, UpdateHygieneTips.class);
+        Intent reportIntent = new Intent(MainActivity.this, UpdateHelpDesk.class);
         startActivity(reportIntent);
     }
 
     private void openUpdateMotherCare() {
-        Intent reportIntent = new Intent( MainActivity.this, UpdateMotherCare.class);
+        Intent reportIntent = new Intent( MainActivity.this, UpdateNoticeBoard.class);
         startActivity(reportIntent);
     }
 
     private void homeNavigationData() {
-        MainModel model = new MainModel("General Health", R.drawable.hospitalred);
+        MainModel model = new MainModel("Live News", R.drawable.news);
         mainModelList.add(model);
 
-        model = new MainModel("Mother Care",R.drawable.pregnantred);
+//        model = new MainModel("Help Desk",R.drawable.frontdesk);
+//        mainModelList.add(model);
+
+        model = new MainModel("Notice Board ",R.drawable.advert);
         mainModelList.add(model);
 
-        model = new MainModel("Hygiene ",R.drawable.handwashred);
+        model = new MainModel("Town Information ",R.drawable.about);
         mainModelList.add(model);
 
     }

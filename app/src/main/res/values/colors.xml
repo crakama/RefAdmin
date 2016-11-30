@@ -6,4 +6,6 @@
     <color name="colorPrimaryWhite"> #F5F5F5</color>
     <color name="colorPrimaryWhiteDark">#EEEEEE</color>
     <color name="colorWhiteDark">#FFFFFF</color>
+    <color name="lightgrey">#D3D3D3</color>
+    <color name="colorBlue">#1565C0</color>
 </resources>
