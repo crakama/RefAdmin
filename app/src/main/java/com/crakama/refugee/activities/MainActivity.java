@@ -46,16 +46,16 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case 1:
                                 // Toast.makeText(view.getContext(), "POSITION" + i, Toast.LENGTH_LONG).show();
-                                openUpdateHelpDesk();
 
+                                openUpdateNoticeBoard();
                                 break;
                             case 2:
                                 // Toast.makeText(view.getContext(), "POSITION" + i, Toast.LENGTH_LONG).show();
-                                openUpdateNoticeBoard();
+                                openUpdateTownInfo();
                                 break;
                             case 3:
-                                // Toast.makeText(view.getContext(), "POSITION" + i, Toast.LENGTH_LONG).show();
-                                openUpdateTownInfo();
+
+                                //openUpdateTownInfo();
                                 break;
                         }
                     }
@@ -63,18 +63,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void openUpdateGeneralHealth() {
+    private void openUpdateNews() {
         //u
         Intent reportIntent = new Intent( MainActivity.this, UpdateNews.class);
         startActivity(reportIntent);
     }
 
-    private void openUpdateHygieneTips() {
+    private void openUpdateTownInfo() {
         Intent reportIntent = new Intent(MainActivity.this, UpdateHelpDesk.class);
         startActivity(reportIntent);
     }
 
-    private void openUpdateMotherCare() {
+    private void openUpdateNoticeBoard() {
         Intent reportIntent = new Intent( MainActivity.this, UpdateNoticeBoard.class);
         startActivity(reportIntent);
     }
@@ -82,9 +82,6 @@ public class MainActivity extends AppCompatActivity {
     private void homeNavigationData() {
         MainModel model = new MainModel("Live News", R.drawable.news);
         mainModelList.add(model);
-
-//        model = new MainModel("Help Desk",R.drawable.frontdesk);
-//        mainModelList.add(model);
 
         model = new MainModel("Notice Board ",R.drawable.advert);
         mainModelList.add(model);
